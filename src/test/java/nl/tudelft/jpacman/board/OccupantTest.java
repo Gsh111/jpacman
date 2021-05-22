@@ -27,6 +27,7 @@ class OccupantTest {
 
     /**
      * Asserts that a unit has no square to start with.
+     * 没有正方形
      */
     @Test
     void noStartSquare() {
@@ -36,7 +37,7 @@ class OccupantTest {
     }
     /**
      * Tests that the unit indeed has the target square as its base after
-     * occupation.
+     * occupation.有一个正方形
      */
     @Test
     void testOccupy() {
@@ -49,7 +50,7 @@ class OccupantTest {
     }
     /**
      * Test that the unit indeed has the target square as its base after
-     * double occupation.
+     * double occupation.有两个正方形
      */
     @Test
     void testReoccupy() {
