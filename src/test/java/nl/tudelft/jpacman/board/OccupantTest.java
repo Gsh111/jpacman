@@ -35,7 +35,6 @@ class OccupantTest {
         assertThat(unit).isNotNull();
         assertThat(unit.hasSquare()).isFalse();
     }
-
     /**
      * Tests that the unit indeed has the target square as its base after
      * occupation.
@@ -49,7 +48,6 @@ class OccupantTest {
 
         assertThat(square.getOccupants()).contains(unit);
     }
-
     /**
      * Test that the unit indeed has the target square as its base after
      * double occupation.
@@ -58,10 +56,8 @@ class OccupantTest {
     void testReoccupy() {
 
         Square square = new BasicSquare();
-
         unit.occupy(square);
         unit.occupy(square);
-
         assertThat(unit.getSquare()).isEqualTo(square);
         assertThat(square.getOccupants()).contains(unit).containsOnlyOnce(unit);
     }
