@@ -14,6 +14,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -48,9 +50,27 @@ public class InkyTest {
 
 
     /**
+     * Test case when there isn't a player on the board. (Bad Weather Case).
+     */
+    @Test
+    @DisplayName("Inky没有Player")
+    @Order(1)
+    void testNoPlayer() {
+        Level level = ghostMapParser.parseMap(
+            Lists.newArrayList("####", "B  I", "####")
+        );
+        Inky inky = Navigation.findUnitInBoard(Inky.class, level.getBoard());
+
+        assertThat(inky.nextAiMove()).isEqualTo(Optional.empty());
+    }
+
+
+    /**
      * Test case when no Blinky insight. (Bad Weather Case).
      */
     @Test
+    @DisplayName("Inky没有Blinky")
+    @Order(2)
     void testNoBlinky() {
 
         Level level = ghostMapParser.parseMap(
@@ -68,6 +88,8 @@ public class InkyTest {
      * Test case when there's no path between Inky and Player. (Bad Weather Case).
      */
     @Test
+    @DisplayName("Inky与Player之间没有直接路径")
+    @Order(3)
     void testNoPath() {
 
         List<String> grid = new ArrayList<>();
@@ -85,25 +107,13 @@ public class InkyTest {
 
     }
 
-
-    /**
-     * Test case when there isn't a player on the board. (Bad Weather Case).
-     */
-    @Test
-    void testNoPlayer() {
-        Level level = ghostMapParser.parseMap(
-            Lists.newArrayList("####", "B  I", "####")
-        );
-        Inky inky = Navigation.findUnitInBoard(Inky.class, level.getBoard());
-
-        assertThat(inky.nextAiMove()).isEqualTo(Optional.empty());
-    }
-
-
     /**
      * Good weather case, Inky follows Pacman and Blinky is behind it.
      */
     @Test
+    @DisplayName("Inky跟随吃豆人并且Blinky在其之后")
+    @Order(4)
+
     void testGoTowardsPlayer() {
 
         List<String> grid = new ArrayList<>();
@@ -124,6 +134,8 @@ public class InkyTest {
      * Good Weather case. Inky moves away properly when is standing in front Pacman.
      */
     @Test
+    @DisplayName("Inky遇到吃豆人")
+    @Order(5)
     void testInkyMovesAway() {
 
         List<String> grid = new ArrayList<>();

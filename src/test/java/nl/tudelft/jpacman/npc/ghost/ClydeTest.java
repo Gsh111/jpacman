@@ -7,8 +7,6 @@ import java.util.List;
 import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
@@ -115,12 +113,9 @@ public class ClydeTest {
 		Clyde clyde = Navigation.findUnitInBoard(Clyde.class, level.getBoard());
 		assertThat(clyde).isNotNull();
 		assertThat(clyde.getDirection()).isEqualTo(Direction.valueOf("EAST"));
-		
 		assertThat(level.isAnyPlayerAlive()).isFalse();
-
 		//act:
 		Optional<Direction> opt = clyde.nextAiMove();
-		
 		//assert:
 		assertThat(opt.isPresent()).isFalse();
 	}
@@ -135,18 +130,12 @@ public class ClydeTest {
 				"#.C..........#",
 				"##############");
 		Level level = mapParser.parseMap(text);
-		
 		Clyde clyde = Navigation.findUnitInBoard(Clyde.class, level.getBoard());
         assertThat(clyde).isNotNull();
         assertThat(clyde.getDirection()).isEqualTo(Direction.valueOf("EAST"));
-
-
         assertThat(level.isAnyPlayerAlive()).isFalse();
-
-		
 		//act:
 		Optional<Direction> opt = clyde.nextAiMove();
-		
 		//assert:
 		assertThat(opt.isPresent()).isFalse();
 	}
