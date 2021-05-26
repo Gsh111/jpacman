@@ -5,6 +5,7 @@ import nl.tudelft.jpacman.level.Player;
 import nl.tudelft.jpacman.points.PointCalculator;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
@@ -34,6 +35,7 @@ public class GameUnitTest {
      * Test when there is an alive player and the number of pellets is positive.
      */
     @Test
+    @DisplayName("测试豆子和吃豆人均存在时")
     void testPlayerAliveRemainingPellets() {
         Mockito.when(level.isAnyPlayerAlive()).thenReturn(true);
         Mockito.when(level.remainingPellets()).thenReturn(1);
@@ -50,6 +52,7 @@ public class GameUnitTest {
      * Test when there is an alive player and not any pellets left.
      */
     @Test
+    @DisplayName("测试吃豆人吃完所有的豆子")
     void testPlayerAliveNotRemainingPellets() {
         Mockito.when(level.isAnyPlayerAlive()).thenReturn(true);
         Mockito.when(level.remainingPellets()).thenReturn(0);
@@ -66,6 +69,7 @@ public class GameUnitTest {
      * Test when there is not an alive player and the number of remaining pellets is positive.
      */
     @Test
+    @DisplayName("测试吃豆人失败后剩余的豆子数量")
     void testPlayerNotAliveRemainingPellets() {
         Mockito.when(level.isAnyPlayerAlive()).thenReturn(false);
         Mockito.when(level.remainingPellets()).thenReturn(1);
@@ -83,6 +87,7 @@ public class GameUnitTest {
      * so that the game is in progress for the second one.
      */
     @Test
+    @DisplayName("测试第二次开始游戏")
     void testInProgressTrue() {
         Mockito.when(level.isAnyPlayerAlive()).thenReturn(true);
         Mockito.when(level.remainingPellets()).thenReturn(1);
