@@ -3,6 +3,7 @@ package nl.tudelft.jpacman.level;
 import nl.tudelft.jpacman.npc.Ghost;
 import nl.tudelft.jpacman.points.PointCalculator;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
@@ -83,6 +84,7 @@ public abstract class CollisionMapTest {
      * Test where first parameter for collide method is a player and the second is also a player.
      */
     @Test
+    @DisplayName("测试的第一个参数是吃豆人，第二个也是吃豆人")
     void testPlayerPlayer() {
         Player player1 = Mockito.mock(Player.class);
         playerCollisions.collide(player, player1);
@@ -95,6 +97,7 @@ public abstract class CollisionMapTest {
      * Test where first parameter for collide method is a player and the second is a pellet.
      */
     @Test
+    @DisplayName("测试的第一个参数是吃豆人，第二个是豆子")
     void testPlayerPellet() {
         playerCollisions.collide(player, pellet);
 
@@ -113,6 +116,7 @@ public abstract class CollisionMapTest {
      * Test where first parameter for collide method is a player and the second is a ghost.
      */
     @Test
+    @DisplayName("测试的第一个参数是吃豆人，第二个是魔鬼")
     void testPlayerGhost() {
         playerCollisions.collide(player, ghost);
 
@@ -133,6 +137,7 @@ public abstract class CollisionMapTest {
      * Test where first parameter for collide method is a ghost and the second one is a player.
      */
     @Test
+    @DisplayName("测试的第一个参数是魔鬼，第二个是吃豆人")
     void testGhostPlayer() {
         playerCollisions.collide(ghost, player);
 
@@ -153,6 +158,7 @@ public abstract class CollisionMapTest {
      * Test where first parameter for collide method is a ghost and the second one is a pellet.
      */
     @Test
+    @DisplayName("测试的第一个参数是魔鬼，第二个是豆子")
     void testGhostPellet() {
         playerCollisions.collide(ghost, pellet);
 
@@ -176,6 +182,7 @@ public abstract class CollisionMapTest {
      * Test where first parameter for collide method is a pellet and the second one is a player.
      */
     @Test
+    @DisplayName("测试的第一个参数是豆子，第二个是吃豆人")
     void testPelletPlayer() {
         playerCollisions.collide(pellet, player);
 
@@ -194,6 +201,7 @@ public abstract class CollisionMapTest {
      * Test where first parameter for collide method is a pellet and the second one is a ghost.
      */
     @Test
+    @DisplayName("测试的第一个参数是豆子，第二个是魔鬼")
     void testPelletGhost() {
         playerCollisions.collide(pellet, ghost);
 
@@ -205,6 +213,8 @@ public abstract class CollisionMapTest {
      * Test where first parameter for collide method is pellet and the second one is also a pellet.
      */
     @Test
+    @DisplayName("测试的第一个参数是豆子，第二个是豆子")
+
     void testPelletPellet() {
         Pellet pellet1 = Mockito.mock(Pellet.class);
         playerCollisions.collide(pellet, pellet1);

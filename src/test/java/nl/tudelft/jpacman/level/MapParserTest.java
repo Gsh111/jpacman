@@ -5,6 +5,7 @@ import nl.tudelft.jpacman.board.BoardFactory;
 import nl.tudelft.jpacman.board.Square;
 import nl.tudelft.jpacman.npc.Ghost;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
@@ -32,6 +33,7 @@ public class MapParserTest {
     /**
      * Initializing the new map parser and all of its dependencies.
      */
+
     @BeforeEach
     public void init() {
         levelFactory = Mockito.mock(LevelFactory.class);
@@ -56,35 +58,8 @@ public class MapParserTest {
      * @throws IOException when the resource could not be read
      * @throws PacmanConfigurationException when the file is not found
      */
-    @Test
-    void testParseMapGoodWeatherTest() throws IOException, PacmanConfigurationException {
-        mapParser.parseMap("/simplemap.txt");
-        List<Square> expStart = Arrays.asList(ground);
 
-        final int timesCreateGround = 7;
-        final int timesCreateWall = 17;
-        final int timesCreatePellet = 1;
-        final int timesCreateGhost = 2;
-        final int timesOccupy = 1;
-        final int timesCreateBoard = 1;
-        final int timesCreateLevel = 1;
 
-        Mockito.verify(boardFactory, Mockito.times(timesCreateGround)).createGround();
-        Mockito.verify(boardFactory, Mockito.times(timesCreateWall)).createWall();
-        Mockito.verify(levelFactory, Mockito.times(timesCreatePellet)).createPellet();
-        Mockito.verify(levelFactory, Mockito.times(timesCreateGhost)).createGhost();
-        Mockito.verify(pellet, Mockito.times(timesOccupy)).occupy(ground);
-
-        Mockito.verify(boardFactory, Mockito.times(timesCreateBoard)).createBoard(Mockito.any());
-        Mockito.verify(levelFactory, Mockito.times(timesCreateLevel)).createLevel(
-            Mockito.any(),
-            Mockito.any(),
-            Mockito.eq(expStart)
-        );
-
-        Mockito.verifyNoMoreInteractions(boardFactory);
-        Mockito.verifyNoMoreInteractions(levelFactory);
-    }
 
 
     /**
@@ -93,6 +68,7 @@ public class MapParserTest {
      * @throws PacmanConfigurationException when the file is not found
      */
     @Test
+    @DisplayName("测试吃豆人和格子")
     void testSpaces() throws IOException, PacmanConfigurationException {
         mapParser.parseMap("/testSpaces.txt");
         List<Square> starts = Arrays.asList(ground, ground, ground);
@@ -119,6 +95,7 @@ public class MapParserTest {
      * @throws PacmanConfigurationException when the file could not be found
      */
     @Test
+    @DisplayName("测试吃豆人和墙壁")
     void testWalls() throws IOException, PacmanConfigurationException {
         mapParser.parseMap("/testWalls.txt");
         List<Square> starts = Arrays.asList(ground);
@@ -146,6 +123,7 @@ public class MapParserTest {
      * @throws PacmanConfigurationException when the file is not found
      */
     @Test
+    @DisplayName("测试吃豆人和豆子")
     void testDots() throws IOException, PacmanConfigurationException {
         mapParser.parseMap("/testDots.txt");
         List<Square> starts = Arrays.asList(ground);
@@ -176,6 +154,7 @@ public class MapParserTest {
      * @throws PacmanConfigurationException when the file is not found
      */
     @Test
+    @DisplayName("测试魔鬼和吃豆人")
     void testGhostsPlayers() throws IOException, PacmanConfigurationException {
         mapParser.parseMap("/testGhostsPlayers.txt");
         List<Square> starts = Arrays.asList(ground, ground);
@@ -204,6 +183,7 @@ public class MapParserTest {
      * Bad weather case when the map is not present in the package.
      */
     @Test
+    @DisplayName("测试当前没有地图")
     void testNoSuchFile() {
         assertThrows(PacmanConfigurationException.class, () ->
             mapParser.parseMap("/random.txt")
@@ -216,6 +196,7 @@ public class MapParserTest {
      * Bad weather case when the map is null.
      */
     @Test
+    @DisplayName("测试没有地图")
     void testParseMapExceptionNull() {
         List<String> map = null;
         assertThrows(PacmanConfigurationException.class, () ->
@@ -228,6 +209,7 @@ public class MapParserTest {
      * Bad weather case when the map is empty.
      */
     @Test
+    @DisplayName("测试地图为空")
     void testParseMapExceptionNoText() {
         List<String> map = new ArrayList<>();
         assertThrows(PacmanConfigurationException.class, () ->
@@ -240,6 +222,7 @@ public class MapParserTest {
      * Bad weather case when the map has an empty line.
      */
     @Test
+    @DisplayName("测试地图的路线为空")
     void testParseMapExceptionEmptyLine() {
         List<String> map = Arrays.asList("");
         assertThrows(PacmanConfigurationException.class, () ->
@@ -252,6 +235,7 @@ public class MapParserTest {
      * Bad weather case when the rows of the map aren't with the same length.
      */
     @Test
+    @DisplayName("测试地图的行长度不同")
     void testParseMapNotEqualLengthOfLines() {
         List<String> map = Arrays.asList(
             "###",
@@ -268,6 +252,7 @@ public class MapParserTest {
      * Bad weather case when the map contains forbidden characters.
      */
     @Test
+    @DisplayName("测试地图包含禁止的人物")
     void testParseMapForbiddenCharacter() {
         List<String> map = Arrays.asList(
             "###",

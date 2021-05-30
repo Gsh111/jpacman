@@ -3,6 +3,7 @@ package nl.tudelft.jpacman.level;
 import nl.tudelft.jpacman.npc.Ghost;
 import nl.tudelft.jpacman.points.PointCalculator;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.mockito.Mockito;
 
 /**
@@ -14,6 +15,7 @@ public class PlayerCollisionsTest extends CollisionMapTest {
      * Initialize a player, a pellet and a ghost using for testing.
      * Also, initialize a PlayerCollisions object.
      */
+    @DisplayName("初始化吃豆人")
     @BeforeEach
     @Override
     void init() {
